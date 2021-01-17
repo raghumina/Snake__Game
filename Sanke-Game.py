@@ -24,6 +24,7 @@ class SNAKE:
     def move_snake(self):
         body_copy = self.body[:-1]
         body_copy.insert(0, body_copy[0] + self.direction)
+        self.body = body_copy[:]
 
 
 class FRUIT:
@@ -69,6 +70,9 @@ while True:
 
         if event.type == SCREEN_UPDATE:
             snake.move_snake()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                snake.direction = Vector2(0,-1)
 
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
