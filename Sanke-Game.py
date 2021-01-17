@@ -8,9 +8,9 @@ pygame.init()
 
 screen = pygame.display.set_mode((400, 500))  # this is length and breadth of the game display
 clock = pygame.time.Clock()  # to make game more consistent time wise
-test_surface = pygame.Surface((50, 20))
+test_surface = pygame.Surface((100, 200))
 test_surface.fill(pygame.Color("black"))
-test_rect = pygame.Rect(100, 200, 200, 200)
+test_rect = test_surface.get_rect(topright = (200,250))
 
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
@@ -19,8 +19,8 @@ while True:
             pygame.quit()
             sys.exit
 
-    pygame.draw.rect(screen, pygame.Color("red"), test_rect)
-
+  #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
+    test_rect.right +=1
     screen.fill(pygame.Color("Green"))
     screen.blit(test_surface, (200, 250))  # blit stands for block image transfer
     pygame.display.update()
