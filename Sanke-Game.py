@@ -6,7 +6,10 @@ import pygame
 
 pygame.init()
 
+
 screen = pygame.display.set_mode((600, 600))  # this is length and breadth of the game display
+clock = pygame.time.Clock()  # to make game more consistent time wise
+
 
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
@@ -15,3 +18,4 @@ while True:
             pygame.quit()
             sys.exit
     pygame.display.update()
+    clock.tick(60)     # 60 frames per second
