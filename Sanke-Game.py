@@ -7,6 +7,17 @@ import random
 from pygame.math import Vector2
 
 
+class SNAKE:
+    def __init__(self):
+        self.body = [Vector2(5, 10), Vector2(6, 10), Vector2(7, 10)]
+
+    def draw_sake(self):
+        for block in self.body:
+            # create rect
+            # draw rectangle
+            block_rect = pygame.Rect(int(block.x * cell_size), int(block.y * cell_size), cell_size, cell_size)
+
+
 class FRUIT:
     def __init__(self):
         # we have to create x and y position
@@ -17,11 +28,10 @@ class FRUIT:
         self.pos = pygame.math.Vector2(self.x, self.y)
 
     def draw_fruit(self):
-    # create a rectangle
-        fruit_rect = pygame.Rect(self.pos.x * cell_size,self.pos.y * cell_size,cell_size,cell_number)
-    # draw a rectangle
-        pygame.draw.rect(screen,(200,200,200), fruit_rect)
-
+        # create a rectangle
+        fruit_rect = pygame.Rect(self.pos.x * cell_size, self.pos.y * cell_size, cell_size, cell_number)
+        # draw a rectangle
+        pygame.draw.rect(screen, (200, 200, 200), fruit_rect)
 
 
 pygame.init()
@@ -37,10 +47,6 @@ clock = pygame.time.Clock()  # to make game more consistent time wise
 # test_rect = test_surface.get_rect(topright = (200,250))
 
 fruit = FRUIT()
-
-
-
-
 
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
