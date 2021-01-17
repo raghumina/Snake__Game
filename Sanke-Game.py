@@ -10,6 +10,7 @@ from pygame.math import Vector2
 class SNAKE:
     def __init__(self):
         self.body = [Vector2(5, 10), Vector2(6, 10), Vector2(7, 10)]
+        self.direction = Vector2(1, 0)
 
     def draw_sake(self):
         for block in self.body:
@@ -19,6 +20,10 @@ class SNAKE:
             # draw rectangle
             block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)
             pygame.draw.rect(screen, pygame.Color("blue"), block_rect)
+
+    def move_snake(self):
+        body_copy = self.body[:-1]
+        body_copy.insert(0, body_copy[0] + self.direction)
 
 
 class FRUIT:
@@ -52,6 +57,9 @@ clock = pygame.time.Clock()  # to make game more consistent time wise
 fruit = FRUIT()
 snake = SNAKE()
 
+SCREEN_UPDATE = pygame.USEREVENT
+pygame.time.set_timer(SCREEN_UPDATE, 150)
+
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
     for event in pygame.event.get():
@@ -59,9 +67,12 @@ while True:
             pygame.quit()
             sys.exit
 
+        if event.type == SCREEN_UPDATE:
+            snake.move_snake()
+
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
-    screen.fill(pygame.Color("Green"))
+    screen.fill(pygame.Color("RED"))
     fruit.draw_fruit()
     snake.draw_sake()
     #  screen.blit(test_surface, test_rect)  # blit stands for block image transfer
