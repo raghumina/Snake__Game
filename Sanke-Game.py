@@ -17,7 +17,8 @@ class SNAKE:
             y_pos = int(block.y * cell_size)
             # create rect
             # draw rectangle
-            block_rect = pygame.Rect(x_pos,y_pos,cell_size,cell_size)
+            block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)
+            pygame.draw.rect(screen, pygame.Color("blue"), block_rect)
 
 
 class FRUIT:
@@ -25,15 +26,15 @@ class FRUIT:
         # we have to create x and y position
         # draw a square
         self.x = random.randint(0, cell_number - 1)
-        self.y = random.randint(0, cell_size - 1)
+        self.y = random.randint(0, cell_number - 1)
 
         self.pos = pygame.math.Vector2(self.x, self.y)
 
     def draw_fruit(self):
         # create a rectangle
-        fruit_rect = pygame.Rect(self.pos.x * cell_size, self.pos.y * cell_size, cell_size, cell_number)
+        fruit_rect = pygame.Rect(self.pos.x * cell_size, self.pos.y * cell_size, cell_size, cell_size)
         # draw a rectangle
-        pygame.draw.rect(screen, (200, 200, 200), fruit_rect)
+        pygame.draw.rect(screen, pygame.Color("black"), fruit_rect)
 
 
 pygame.init()
@@ -49,6 +50,7 @@ clock = pygame.time.Clock()  # to make game more consistent time wise
 # test_rect = test_surface.get_rect(topright = (200,250))
 
 fruit = FRUIT()
+snake = SNAKE()
 
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
@@ -61,6 +63,7 @@ while True:
         #  test_rect.right +=1
     screen.fill(pygame.Color("Green"))
     fruit.draw_fruit()
+    snake.draw_sake()
     #  screen.blit(test_surface, test_rect)  # blit stands for block image transfer
     pygame.display.update()
     clock.tick(60)  # 60 frames per second
