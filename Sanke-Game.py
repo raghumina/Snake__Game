@@ -43,6 +43,14 @@ class FRUIT:
         pygame.draw.rect(screen, pygame.Color("black"), fruit_rect)
 
 
+class MAIN:
+    def __init__(self):
+        self.snake = SNAKE()
+        self.fruit  =FRUIT()
+
+    def update(self):
+        snake.move_snake()
+
 pygame.init()
 
 cell_size = 40
@@ -55,11 +63,14 @@ clock = pygame.time.Clock()  # to make game more consistent time wise
 # test_surface.fill(pygame.Color("black"))
 # test_rect = test_surface.get_rect(topright = (200,250))
 
-fruit = FRUIT()
-snake = SNAKE()
+#fruit = FRUIT()
+#snake = SNAKE()
+
 
 SCREEN_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(SCREEN_UPDATE, 150)
+
+main_game = MAIN()
 
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
@@ -69,7 +80,7 @@ while True:
             sys.exit
 
         if event.type == SCREEN_UPDATE:
-            snake.move_snake()
+            main_game.update()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 snake.direction = Vector2(0,-1)
