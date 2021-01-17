@@ -4,12 +4,23 @@
 import sys
 import pygame
 
+class FRUIT:
+    def __init__(self):
+        # we have to create x and y position
+        # draw a square 
+        self.x = 5
+
+        self.y = 4
+
+
+
+
 pygame.init()
 
-cell_size = 20
-cell_number = 40
+cell_size = 40
+cell_number = 20
 
-screen = pygame.display.set_mode((400, 500))  # this is length and breadth of the game display
+screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))  # this is length and breadth of the game display
 clock = pygame.time.Clock()  # to make game more consistent time wise
 # test_surface = pygame.Surface((10, 20))
 # test_surface.fill(pygame.Color("black"))
