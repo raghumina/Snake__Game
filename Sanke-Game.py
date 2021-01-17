@@ -13,9 +13,11 @@ class SNAKE:
 
     def draw_sake(self):
         for block in self.body:
+            x_pos = int(block.x * cell_size)
+            y_pos = int(block.y * cell_size)
             # create rect
             # draw rectangle
-            block_rect = pygame.Rect(int(block.x * cell_size), int(block.y * cell_size), cell_size, cell_size)
+            block_rect = pygame.Rect(x_pos,y_pos,cell_size,cell_size)
 
 
 class FRUIT:
