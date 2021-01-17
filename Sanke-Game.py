@@ -6,10 +6,11 @@ import pygame
 
 pygame.init()
 
-screen = pygame.display.set_mode((600, 600))  # this is length and breadth of the game display
+screen = pygame.display.set_mode((400, 500))  # this is length and breadth of the game display
 clock = pygame.time.Clock()  # to make game more consistent time wise
 test_surface = pygame.Surface((50, 20))
 test_surface.fill(pygame.Color("black"))
+test_rect = pygame.Rect(100, 200, 200, 200)
 
 while True:
     # Here we will draw all our elements such as dispaly image, snake, fruits etc
@@ -17,6 +18,8 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit
+
+    pygame.draw.rect(screen, pygame.Color("red"), test_rect)
 
     screen.fill(pygame.Color("Green"))
     screen.blit(test_surface, (200, 250))  # blit stands for block image transfer
