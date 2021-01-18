@@ -28,16 +28,7 @@ class SNAKE:
 
 
 
-    def check_fail(self):
-        # check if snack is outside the wall
-        # check if snack hits itself or wall
 
-        if not 0 <= self.snake.body[0] <= cell_number:
-            self.game_over()
-
-    def game_over(self):
-        pygame.quit()
-        sys.exit()
 
 class FRUIT:
     def __init__(self):
@@ -70,6 +61,7 @@ class MAIN:
     def update(self):
         self.snake.move_snake()
         self.check_collision()
+        self.check_fail()
 
     def draw_elements(self):
         self.fruit.draw_fruit()
@@ -79,6 +71,17 @@ class MAIN:
         if self.fruit.pos == self.snake.body[0]:
             self.fruit.randomize()
     # reposition the fruit
+
+    def check_fail(self):
+        # check if snack is outside the wall
+        # check if snack hits itself or wall
+
+        if not 0 <= self.snake.body[0] <= cell_number:
+            self.game_over()
+
+    def game_over(self):
+        pygame.quit()
+        sys.exit()
     # add one block to snake every time it eats fruit
 
 
