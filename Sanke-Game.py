@@ -9,7 +9,7 @@ from pygame.math import Vector2
 
 class SNAKE:
     def __init__(self):
-        self.body = [Vector2(5, 10), Vector2(6, 10), Vector2(7, 10)]
+        self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
         self.direction = Vector2(1, 0)
 
     def draw_sake(self):
@@ -25,9 +25,6 @@ class SNAKE:
         body_copy = self.body[:-1]
         body_copy.insert(0, body_copy[0] + self.direction)
         self.body = body_copy[:]
-
-
-
 
 
 class FRUIT:
@@ -70,14 +67,20 @@ class MAIN:
     def check_collision(self):
         if self.fruit.pos == self.snake.body[0]:
             self.fruit.randomize()
+            self.snake.add_block()
+
     # reposition the fruit
 
     def check_fail(self):
         # check if snack is outside the wall
         # check if snack hits itself or wall
 
-        if not 0 <= self.snake.body[0] <= cell_number:
+        if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
             self.game_over()
+
+        for block in self.snake.body[1:]:
+            if block == self.snake.body[0]:
+                self.game_over()
 
     def game_over(self):
         pygame.quit()
