@@ -1,6 +1,8 @@
 # SNAKE GAME
 # THIS SNAKE GAME WAS MADE WITH THE HELP OF PYGAME MODULE
 # PYTHON PYGAME MODULE IS USE TO CREATE GAMES
+
+
 import sys
 import pygame
 import random
@@ -89,7 +91,6 @@ class MAIN:
 
 
 pygame.init()
-
 cell_size = 40
 cell_number = 20
 
@@ -119,14 +120,20 @@ while True:
         if event.type == SCREEN_UPDATE:
             main_game.update()
         if event.type == pygame.KEYDOWN:
+
             if event.key == pygame.K_UP:
-                main_game.snake.direction = Vector2(0, -1)
+
+                if main_game.snake.direction.y != 1:
+                    main_game.snake.direction = Vector2(0, -1)
             if event.key == pygame.K_RIGHT:
-                main_game.snake.direction = Vector2(1, 0)
+                if main_game.snake.direction.x != -1:
+                    main_game.snake.direction = Vector2(1, 0)
             if event.key == pygame.K_DOWN:
-                main_game.snake.direction = Vector2(0, 1)
+                if main_game.snake.direction.y != -1:
+                    main_game.snake.direction = Vector2(0, 1)
             if event.key == pygame.K_LEFT:
-                main_game.snake.direction = Vector2(-1, 0)
+                if main_game.snake.direction.x != 1:
+                    main_game.snake.direction = Vector2(-1, 0)
 
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
