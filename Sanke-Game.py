@@ -27,14 +27,27 @@ class SNAKE:
         self.body = body_copy[:]
 
 
+
+    def check_fail(self):
+        # check if snack is outside the wall
+        # check if snack hits itself or wall
+
+        if not 0 <= self.snake.body[0] <= cell_number:
+            self.game_over()
+
+    def game_over(self):
+        pygame.quit()
+        sys.exit()
+
 class FRUIT:
     def __init__(self):
+        self.randomize()
         # we have to create x and y position
         # draw a square
-        self.x = random.randint(0, cell_number - 1)
-        self.y = random.randint(0, cell_number - 1)
+        # self.x = random.randint(0, cell_number - 1)
+        # self.y = random.randint(0, cell_number - 1)
 
-        self.pos = pygame.math.Vector2(self.x, self.y)
+        # self.pos = pygame.math.Vector2(self.x, self.y)
 
     def draw_fruit(self):
         # create a rectangle
@@ -42,14 +55,32 @@ class FRUIT:
         # draw a rectangle
         pygame.draw.rect(screen, pygame.Color("black"), fruit_rect)
 
+    def randomize(self):
+        self.x = random.randint(0, cell_number - 1)
+        self.y = random.randint(0, cell_number - 1)
+
+        self.pos = pygame.math.Vector2(self.x, self.y)
+
 
 class MAIN:
     def __init__(self):
         self.snake = SNAKE()
-        self.fruit  =FRUIT()
+        self.fruit = FRUIT()
 
     def update(self):
-        snake.move_snake()
+        self.snake.move_snake()
+        self.check_collision()
+
+    def draw_elements(self):
+        self.fruit.draw_fruit()
+        self.snake.draw_sake()
+
+    def check_collision(self):
+        if self.fruit.pos == self.snake.body[0]:
+            self.fruit.randomize()
+    # reposition the fruit
+    # add one block to snake every time it eats fruit
+
 
 pygame.init()
 
@@ -63,8 +94,8 @@ clock = pygame.time.Clock()  # to make game more consistent time wise
 # test_surface.fill(pygame.Color("black"))
 # test_rect = test_surface.get_rect(topright = (200,250))
 
-#fruit = FRUIT()
-#snake = SNAKE()
+# fruit = FRUIT()
+# snake = SNAKE()
 
 
 SCREEN_UPDATE = pygame.USEREVENT
@@ -83,19 +114,19 @@ while True:
             main_game.update()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                snake.direction = Vector2(0,-1)
+                main_game.snake.direction = Vector2(0, -1)
             if event.key == pygame.K_RIGHT:
-                snake.direction = Vector2(1,0)
+                main_game.snake.direction = Vector2(1, 0)
             if event.key == pygame.K_DOWN:
-                snake.direction = Vector2(0,1)
+                main_game.snake.direction = Vector2(0, 1)
             if event.key == pygame.K_LEFT:
-                snake.direction = Vector2(-1,0)
+                main_game.snake.direction = Vector2(-1, 0)
 
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
     screen.fill(pygame.Color("RED"))
-    fruit.draw_fruit()
-    snake.draw_sake()
+    main_game.draw_elements()
+
     #  screen.blit(test_surface, test_rect)  # blit stands for block image transfer
     pygame.display.update()
     clock.tick(60)  # 60 frames per second
