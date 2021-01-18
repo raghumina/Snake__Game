@@ -15,13 +15,36 @@ class SNAKE:
         self.direction = Vector2(1, 0)
         self.new_block = False
     def draw_sake(self):
-        for block in self.body:
-            x_pos = int(block.x * cell_size)
-            y_pos = int(block.y * cell_size)
-            # create rect
-            # draw rectangle
-            block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)
-            pygame.draw.rect(screen, pygame.Color("blue"), block_rect)
+
+        for index, block in enumerate(self.body):
+            # still need rect for positioning
+            # what direction face is heading
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #    for block in self.body:
+     #       x_pos = int(block.x * cell_size)
+      ##     # create rect
+        #    # draw rectangle
+         #   block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)
+          #  pygame.draw.rect(screen, pygame.Color("blue"), block_rect)
 
     def move_snake(self):
         if self.new_block == True:
@@ -53,8 +76,9 @@ class FRUIT:
     def draw_fruit(self):
         # create a rectangle
         fruit_rect = pygame.Rect(self.pos.x * cell_size, self.pos.y * cell_size, cell_size, cell_size)
+        screen.blit(mouse,fruit_rect)
         # draw a rectangle
-        pygame.draw.rect(screen, pygame.Color("black"), fruit_rect)
+     #   pygame.draw.rect(screen, pygame.Color("black"), fruit_rect)
 
     def randomize(self):
         self.x = random.randint(0, cell_number - 1)
@@ -102,12 +126,14 @@ class MAIN:
 
 
 pygame.init()
-cell_size = 40
+cell_size = 30
 cell_number = 20
 
 screen = pygame.display.set_mode(
     (cell_number * cell_size, cell_number * cell_size))  # this is length and breadth of the game display
 clock = pygame.time.Clock()  # to make game more consistent time wise
+
+mouse = pygame.image.load('mouse.png').convert_alpha()
 # test_surface = pygame.Surface((10, 20))
 # test_surface.fill(pygame.Color("black"))
 # test_rect = test_surface.get_rect(topright = (200,250))
@@ -148,7 +174,7 @@ while True:
 
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
-    screen.fill(pygame.Color("RED"))
+    screen.fill(pygame.Color("green"))
     main_game.draw_elements()
 
     #  screen.blit(test_surface, test_rect)  # blit stands for block image transfer
