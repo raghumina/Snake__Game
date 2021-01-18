@@ -18,8 +18,17 @@ class SNAKE:
 
         for index, block in enumerate(self.body):
             # still need rect for positioning
+            x_pos = int(block.x * cell_size)
+            y_pos = int(block.y * cell_size)
+            block_rect = pygame.Rect(x_pos,y_pos,cell_size,cell_size)
+
             # what direction face is heading
-            
+            if index == 0:
+                screen.blit(self.head_right,block_rect)
+            else:
+                pygame.draw.rect(screen,pygame.Color("blue"),block_rect)
+                
+
 
 
 
