@@ -25,7 +25,8 @@ class SNAKE:
         self.body_tl = pygame.image.load('body_tl.png').convert_alpha()
         self.body_br = pygame.image.load('body_br.png').convert_alpha()
         self.body_bl = pygame.image.load('body_bl.png').convert_alpha()
-   #     self.crunch_sound = pygame.mixer.Sound('crunch.wav')
+
+    #     self.crunch_sound = pygame.mixer.Sound('crunch.wav')
 
     def draw_snake(self):
         self.update_head_graphics()
@@ -93,8 +94,8 @@ class SNAKE:
     def add_block(self):
         self.new_block = True
 
-  #  def play_crunch_sound(self):
-   #     self.crunch_sound.play()
+    #  def play_crunch_sound(self):
+    #     self.crunch_sound.play()
 
     def reset(self):
         self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
@@ -137,7 +138,7 @@ class MAIN:
         if self.fruit.pos == self.snake.body[0]:
             self.fruit.randomize()
             self.snake.add_block()
-       #     self.snake.play_crunch_sound()
+        #     self.snake.play_crunch_sound()
 
         for block in self.snake.body[1:]:
             if block == self.fruit.pos:
@@ -186,8 +187,8 @@ class MAIN:
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
-cell_size = 30
-cell_number = 20
+cell_size = 33
+cell_number = 30
 pygame.display.set_caption("SNAKE&MOUSE")  # now the title of the game will be space war
 screen = pygame.display.set_mode(
     (cell_number * cell_size, cell_number * cell_size))  # this is length and breadth of the game display
@@ -205,7 +206,7 @@ game_font = pygame.font.Font('PoetsenOne-Regular.ttf', 25)
 
 
 SCREEN_UPDATE = pygame.USEREVENT
-pygame.time.set_timer(SCREEN_UPDATE, 150)
+pygame.time.set_timer(SCREEN_UPDATE, 100)
 
 main_game = MAIN()
 
@@ -236,7 +237,7 @@ while True:
 
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
-    screen.fill((34,139,34))
+    screen.fill((34, 139, 34))
     main_game.draw_elements()
 
     #  screen.blit(test_surface, test_rect)  # blit stands for block image transfer
