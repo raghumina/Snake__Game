@@ -187,7 +187,7 @@ class MAIN:
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
-cell_size = 33
+cell_size = 25
 cell_number = 30
 pygame.display.set_caption("SNAKE&MOUSE")  # now the title of the game will be space war
 screen = pygame.display.set_mode(
@@ -237,7 +237,7 @@ while True:
 
         #  pygame.draw.rect(screen, pygame.Color("red"), test_rect)
         #  test_rect.right +=1
-    screen.fill((34, 139, 34))
+    screen.fill((220, 251, 254))
     main_game.draw_elements()
 
     #  screen.blit(test_surface, test_rect)  # blit stands for block image transfer
